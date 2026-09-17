@@ -1,0 +1,143 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, Arial, sans-serif;
+    color: #1f2937;
+    background-color: #f9fafb;
+}
+
+header {
+    padding: 1.5rem;
+    text-align: center;
+    background-color: #0f172a;
+    color: #ffff;
+}
+
+header a {
+    color: #ffff;
+}
+
+main {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+/* =========================================
+   Catálogo de Talleres
+   ========================================= */
+.catalogo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1rem; /* Un poco de espacio para que no pegue a los bordes */
+}
+
+.tarjeta {
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    background-color: #ffff;
+}
+
+.tarjeta h2 {
+    margin-top: 0;
+    font-size: 1.1rem;
+}
+
+.tarjeta a {
+    color: #0f172a;
+    text-decoration: none;
+}
+
+.tarjeta a:hover {
+    text-decoration: underline;
+}
+
+/* =========================================
+   Estilos para el Formulario de Registro 
+   ========================================= */
+
+/* 1. Regla general para el formulario */
+.formulario_registro {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; 
+}
+
+/* Regla extra para que los labels se vean bien */
+.formulario_registro label {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: -0.25rem;
+}
+
+/* 2. Regla para los inputs */
+.formulario_registro input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-family: inherit;
+    box-sizing: border-box; 
+}
+
+/* 3. Regla para el botón */
+.formulario_registro button {
+    background-color: #0f172a; 
+    color: #ffffff;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease; 
+}
+
+/* 4. Regla para el hover del botón */
+.formulario_registro button:hover {
+    background-color: #1e293b; 
+}
+
+/* 5. Regla para cuando falle el registro (mensajes de span) */
+.error {
+    color: #ef4444; 
+    font-size: 0.8rem;
+    min-height: 1.2em; 
+    margin-top: -0.5rem;
+}
+
+/* 6. Regla para input inválido (activado por JS) */
+.formulario_registro input.invalido {
+    border-color: #ef4444; 
+    background-color: #fef2f2; 
+    outline: none;
+}
+
+/* 7. Regla para registro exitoso */
+.mensaje-exito {
+    color: #10b981; 
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
