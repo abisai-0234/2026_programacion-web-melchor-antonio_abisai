@@ -1,11 +1,4 @@
-/* Las validaciones de formulario son expresiones regulares, las cuales en este momento las podemos dividir en tres partes:
 
-1.- Para el texto (nombre)
-2.- Para el numero de boleta (boleta)
-3.- Para la fecha (fecha)
-
-Una expresion regular, es un patron donde se identifica que elementos seran validos vs cuales no, son reglas mediante las cuales realizamos la validacion de los datos ingresados por el usuario, en este caso, en un formulario.
-*/
 
 const patrones = {
     nombre: /^[A-Za-zÁÉÍÓÚÑáéíóúñ\s]{2,60}$/,
