@@ -1,19 +1,20 @@
 const db = require('../db-local');
- async function obtenerTalleres() {
-        const [rows] = await db.query('SELECT * FROM talleres');
-        return rows;
-    }
 
-    async function crearTaller(taller) {
-        const { nombre, descripcion, fecha_inicio, fecha_fin } = taller;
-        const [result] = await db.query(
-            'INSERT INTO talleres (nombre, descripcion, fecha_inicio, fecha_fin) VALUES (?, ?, ?, ?)',
-            [nombre, descripcion, fecha_inicio, fecha_fin]
-        );
-        return { id: result.insertId, ...taller };
-    }
+async function obtenerTalleres() {
+    const [rows] = await db.query('SELECT * FROM talleres');
+    return rows;
+}
 
-    module.exports = {
-        obtenerTalleres,
-        crearTaller
-    };
+async function crearTaller(taller) {
+    const { nombre, instructor, fecha, cupo } = taller;
+    const [result] = await db.query(
+        'INSERT INTO talleres (nombre, instructor, fecha, cupo) VALUES (?, ?, ?, ?)',
+        [nombre, instructor, fecha, cupo]
+    );
+    return { id: result.insertId, ...taller };
+}
+
+module.exports = {
+    obtenerTalleres,
+    crearTaller
+};

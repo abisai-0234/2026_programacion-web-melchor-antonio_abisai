@@ -7,14 +7,14 @@ async function listar() {
     return filas;    
 }
 
-async function obtenerPorId(id) { // <-- Se agregó el parámetro id
+async function obtenerPorId(id) { 
     const [filas] = await pool.query(`SELECT ${COLUMNAS_PUBLICAS} FROM usuarios WHERE id = ?`, [id]);
     return filas[0];    
 }
 
 async function crear({nombre, correo, contrasena, boleta, rol}) {
     const [info] = await pool.query(`
-        INSERT INTO usuarios (nombre, correo, contrasena, boleta, rol) VALUES (?, ?, ?, ?, ?)`, 
+        INSERT INTO usuarios (nombre, correo, contrasena_hash, boleta, rol) VALUES (?, ?, ?, ?, ?)`, 
     [nombre, correo, contrasena, boleta, rol || 'alumno']);
     return obtenerPorId(info.insertId);    
 }
