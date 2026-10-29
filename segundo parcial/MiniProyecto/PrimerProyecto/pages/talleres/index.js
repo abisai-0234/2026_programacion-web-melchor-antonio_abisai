@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import TarjetaTaller from '../../components/TarjetaTaller';
+import TarjetaTaller from '../../componentes/TarjetaTaller';
 import { pedirJSON } from '../../lib/api';
 import estilos from '../../styles/Talleres.module.css';
 
