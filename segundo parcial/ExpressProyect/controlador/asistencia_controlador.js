@@ -1,25 +1,35 @@
 const AsistenciaModelo = require('../modelo/asistencia');
 
-async function obtenerAsistencias(req, res) {
+async function registrarAsistencia(req, res) {
     try {
-        const asistencia = await AsistenciaModelo.obtenerAsistencias();
-        res.json(asistencia);
+        const datos = req.body;
+        const resultado = await AsistenciaModelo.registrarAsistencia(datos);
+        res.status(201).json(resultado);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 }
 
-async function registrarAsistencia(req, res) {
+async function listarAsistenciaUsuario(req, res) {
     try {
-        const datos = req.body;
-        const nuevaAsistencia = await AsistenciaModelo.registrarAsistencia(datos);
-        res.status(201).json(nuevaAsistencia);
+        const { id } = req.params;
+        res.json({ mensaje: `Asistencias del usuario ${id}` });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+async function listarAsistenciaTaller(req, res) {
+    try {
+        const { id } = req.params;
+        res.json({ mensaje: `Asistencias del taller ${id}` });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 }
 
 module.exports = {
-    obtenerAsistencias,
-    registrarAsistencia
+    registrarAsistencia,
+    listarAsistenciaUsuario,
+    listarAsistenciaTaller
 };
