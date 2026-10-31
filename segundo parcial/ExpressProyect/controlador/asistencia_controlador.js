@@ -13,7 +13,7 @@ async function registrarAsistencia(req, res) {
 async function listarAsistenciaUsuario(req, res) {
     try {
         const { id } = req.params;
-        res.json({ mensaje: `Asistencias del usuario ${id}` });
+        res.json([]);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -22,7 +22,7 @@ async function listarAsistenciaUsuario(req, res) {
 async function listarAsistenciaTaller(req, res) {
     try {
         const { id } = req.params;
-        res.json({ mensaje: `Asistencias del taller ${id}` });
+        res.json([]);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

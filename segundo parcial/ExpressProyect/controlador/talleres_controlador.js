@@ -11,7 +11,12 @@ async function listarTalleres(req, res) {
 
 async function obtenerTaller(req, res) {
     try {
-        res.json({ mensaje: "Obtener taller por ID" });
+        const { id } = req.params;
+        const taller = await TalleresModelo.obtenerPorId(id);
+        if (!taller) {
+            return res.status(404).json({ error: "Taller no encontrado" });
+        }
+        res.json(taller);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -19,7 +24,8 @@ async function obtenerTaller(req, res) {
 
 async function crearTaller(req, res) {
     try {
-        const taller = req.body;
+        const fecha = new Date().toISOString().slice(0, 10);
+        const taller = { ...req.body, fecha };
         const nuevoTaller = await TalleresModelo.crearTaller(taller);
         res.status(201).json(nuevoTaller);
     } catch (error) {
@@ -53,7 +59,7 @@ async function inscribirseEnTaller(req, res) {
 
 async function listarInscritosTaller(req, res) {
     try {
-        res.json({ mensaje: "Listar inscritos" });
+        res.json([]);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -61,7 +67,7 @@ async function listarInscritosTaller(req, res) {
 
 async function listarTalleresDeUsuario(req, res) {
     try {
-        res.json({ mensaje: "Talleres de usuario" });
+        res.json([]);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

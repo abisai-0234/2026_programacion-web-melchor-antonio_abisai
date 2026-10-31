@@ -1,15 +1,14 @@
-const db = require('../db-local'); 
-async function obtenerAsistencias() {
-    const [filas] = await db.query('SELECT * FROM asistencias');
-    return filas;
-}
+const db = require('../db-local');
 
 async function registrarAsistencia(datos) {
-    const [resultado] = await db.query('INSERT INTO asistencias SET ?', [datos]);
-    return resultado;
+    const { tallerId, usuarioId, fecha } = datos;
+    const [result] = await db.query(
+        'INSERT INTO asistencia (taller_id, usuario_id, fecha) VALUES (?, ?, ?)',
+        [tallerId || datos.taller_id, usuarioId || datos.usuario_id, fecha]
+    );
+    return { id: result.insertId, ...datos };
 }
 
 module.exports = {
-    obtenerAsistencias,
     registrarAsistencia
 };

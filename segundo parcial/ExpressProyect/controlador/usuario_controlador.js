@@ -28,8 +28,14 @@ async function crearUsuario(req, res) {
     try {
         const { nombre, correo, contrasena, boleta } = req.body;
         
+        const soloLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+
         if (!nombre || !correo || !contrasena || !boleta) {
             return res.status(400).json({ error: 'Faltan datos obligatorios' });
+        }
+
+        if (!soloLetras.test(nombre)) {
+            return res.status(400).json({ error: 'El nombre no debe contener números ni símbolos' });
         }
 
         if (contrasena.length < 6) {
