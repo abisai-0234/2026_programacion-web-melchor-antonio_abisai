@@ -39,4 +39,22 @@ async function buscarPorCorreoConHash(correo) {
     return filas[0];
 }
 
-module.exports = {listar, obtenerPorId, crear, actualizar, eliminar, buscarPorCorreoConHash};
+async function obtenerTalleresPorUsuario(boleta) {
+    const [filas] = await pool.query(`
+        SELECT t.id, t.nombre, t.instructor, t.fecha, t.cupo 
+        FROM talleres t
+        INNER JOIN asistencias a ON t.id = a.taller_id
+        WHERE a.boleta = ?
+    `, [boleta]);
+    return filas;
+}
+
+module.exports = {
+    listar, 
+    obtenerPorId, 
+    crear, 
+    actualizar, 
+    eliminar, 
+    buscarPorCorreoConHash, 
+    obtenerTalleresPorUsuario
+};
